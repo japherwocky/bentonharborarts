@@ -43,7 +43,7 @@ class App (tornado.web.Application):
 
 class Home(tornado.web.RequestHandler):
     def get(self, path):
-        if path in ('index.html', 'contact.html', 'explore.html'):
+        if path in ('index.html', 'contact.html', 'explore.html', 'events.html'):
             self.render(path)
 
 
