@@ -35,6 +35,7 @@ class App (tornado.web.Application):
             (r"/?img/(.*)", tornado.web.StaticFileHandler, {'path': 'media/img'}),
             (r"/?js/(.*)", tornado.web.StaticFileHandler, {'path': 'js'}),
             (r"/?css/(.*)", tornado.web.StaticFileHandler, {'path': 'css'}),
+            (r"/$", tornado.web.RedirectHandler, {'url': r'/index.html'}),
             (r"/(.*)", Home),
         ]
 
