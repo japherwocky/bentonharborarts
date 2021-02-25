@@ -1113,3 +1113,13 @@ Waypoints
     -webkit-animation-delay: 1s;
     animation-delay: 1s;
 }
+
+
+
+/* fade opacity in after css is in theory all loaded, to stop the odd flickering we're getting */
+body {
+    opacity:1 !important;
+    background-color:white !important;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
