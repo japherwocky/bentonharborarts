@@ -1,0 +1,9 @@
+[Unit]
+After=network.service
+
+[Service]
+WorkingDirectory=/opt/bhaa
+ExecStart=/opt/bhaa/env/bin/python /opt/bhaa/bharts.py --port=8666 --log_file_prefix=/var/log/bhaa/access.log
+
+[Install]
+WantedBy=default.target
