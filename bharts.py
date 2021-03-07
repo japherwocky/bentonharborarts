@@ -54,10 +54,21 @@ def main():
     from tornado.options import define, options
     define("port", default=8001, help="run on the given port", type=int)
     define("debug", default=False, help="run server in debug mode", type=bool)
+    define("localssl", default=False, help="enable https with self-signed/arbitrary certs", type=bool)
 
     tornado.options.parse_command_line()
 
-    http_server = tornado.httpserver.HTTPServer( App(debug=options.debug), xheaders=True)
+    if options.localssl:
+
+        here = os.path.dirname(os.path.realpath(__file__))
+        opts = {
+            "certfile": os.path.join(here, "server.crt"),
+            "keyfile": os.path.join(here, "server.key"),
+            }
+
+        http_server = tornado.httpserver.HTTPServer( App(debug=options.debug), ssl_options=opts)
+    else:
+        http_server = tornado.httpserver.HTTPServer( App(debug=options.debug), xheaders=True)
     http_server.listen(options.port)
     info('Serving on port %d' % options.port)
     tornado.ioloop.IOLoop.instance().start()
