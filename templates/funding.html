@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html lang="en" class="no-js">
+
+{% module Template("header.html") %}
+
+	<body>
+		<!--[if lt IE 7]>
+		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+		<!-- open/close -->
+		<header>
+			<section class="hero">
+				<div class="texture-overlay"></div>
+				<div class="container">
+					<div class="row nav-wrapper">
+						<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+							<a href="index.html"><img src="img/logo-white.png"></a>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-6 text-right navicon">
+							<p>MENU</p><a id="trigger-overlay" class="nav_slide_button nav-toggle" href="#"><span></span></a>
+						</div>
+					</div>
+					<div class="row hero-content">
+						<div class="col-md-12">
+							<h1 class="animated fadeInDown">Be Inspired In The Benton Harbor Arts District</h1>
+							<a href="index.html#events" class="use-btn animated fadeInUp">Explore</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</header>
+
+
+		<section class="screenshots-intro" id="contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+
+                        <H1>REQUEST FUNDING FROM THE BHAA</H1>
+
+                        <p>The Benton Harbor Arts Association aims to create a vital Benton Harbor Arts District through community outreach and advocacy of the arts. The BHAA advances this goal by, in part, acquiring and distributing resources to artists and nonprofit organizations seeking to undertake a specific project aligned with BHAA’s mission. To request funding from the BHAA grant, please complete and submit this application, and we'll be in touch!</p>
+
+                        {% module Template("funding-form.html") %}
+
+					</div>
+				</div>
+			</div>
+		</section>
+	
+    {% module Template("footer.html") %}
+		
+	</body>
+</html>
