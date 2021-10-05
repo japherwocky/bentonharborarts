@@ -36,6 +36,7 @@ class App (tornado.web.Application):
             (r"/?js/(.*)", tornado.web.StaticFileHandler, {'path': 'js'}),
             (r"/?css/(.*)", tornado.web.StaticFileHandler, {'path': 'css'}),
             (r"/?fonts/(.*)", tornado.web.StaticFileHandler, {'path': 'fonts'}),
+            (r"/submit/?", FormSubmit),
             (r"/$", tornado.web.RedirectHandler, {'url': r'/index.html'}),
             (r"/(.*)", Home),
         ]
@@ -47,6 +48,11 @@ class Home(tornado.web.RequestHandler):
     def get(self, path):
         if path in ('index.html', 'contact.html', 'explore.html', 'events.html', 'funding.html'):
             self.render(path)
+
+
+class FormSubmit(tornado.web.RequestHandler):
+    def post(self, **kwargs):
+        import pdb;pdb.set_trace()
 
 
 
