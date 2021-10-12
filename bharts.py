@@ -10,6 +10,8 @@ import tornado.web
 from tornado.web import HTTPError
 from markdown import markdown
 
+from keys import SMTP_USER, SMTP_PASS
+
 class App (tornado.web.Application):
     def __init__(self, debug=False):
         """
@@ -52,8 +54,34 @@ class Home(tornado.web.RequestHandler):
 
 class FormSubmit(tornado.web.RequestHandler):
     def post(self, **kwargs):
-        import pdb;pdb.set_trace()
+        out = "\n"
+        for k in self.request.arguments.keys():
+            value = self.request.arguments[k][0].decode('utf-8')
 
+            out += "{}\n-----\n{}\n\n".format(k.capitalize() , value)
+
+        #  args = [self.request.arguments[k] for k in self.request.arguments.keys()]
+
+        self.mailpeople(out)
+
+        #  import pdb;pdb.set_trace()
+
+
+    def mailpeople(self, body):
+        headers = 'From: j4ne@pearachute.com\nSubject: Incoming Message\n\n'
+        try:
+            m = smtplib.SMTP('email-smtp.us-east-1.amazonaws.com', 587)
+            m.starttls()
+            m.login(SMTP_USER, SMTP_PASS)
+
+            recips = ['hello@pearachute.com']
+            for recip in recips:
+                m.sendmail('j4ne@pearachute.com', recip, body)
+            m.quit()
+        except:
+            # make sure we don't lose the contact anyhow
+            error(body)
+            raise
 
 
 def main():
